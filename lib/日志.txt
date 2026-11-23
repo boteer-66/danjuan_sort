@@ -1,0 +1,105 @@
+[SNAP] 手动抓拍
+E (155225) gdma: gdma_disconnect(299): no peripheral is connected to the channel
+       TOS OK  17575 B
+E (167004) gdma: gdma_disconnect(299): no peripheral is connected to the channel
+[HEAP] ⚠️  86704 B
+[OK]   巡检中  score=0.00  motion=0  still=0ms
+cam_hal: EV-VSYNC-OVF
+[LEVEL2] #3  score=0.72  motion
+[FSM] MONITORING → CAPTURING
+E (173447) gdma: gdma_disconnect(299): no peripheral is connected to the channel
+E (203447) task_wdt: Task watchdog got triggered. The following tasks did not reset the watchdog in time:
+E (203447) task_wdt:  - loopTask (CPU 1)
+E (203447) task_wdt: Tasks currently running:
+E (203447) task_wdt: CPU 0: IDLE0
+E (203447) task_wdt: CPU 1: IDLE1
+E (203447) task_wdt: Aborting.
+
+abort() was called at PC 0x42025780 on core 0
+
+
+Backtrace: 0x40377e3e:0x3fc971c0 0x4037d86d:0x3fc971e0 0x40383d71:0x3fc97200 0x42025780:0x3fc97280 0x403795f9:0x3fc972a0 0x420b838f:0x3fcf54a0 0x4202550d:0x3fcf54c0 0x4037ee40:0x3fcf54e0
+
+
+
+
+ELF file SHA256: c4bd5173da531d22
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40377a74
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x4bc
+load:0x403c9700,len:0xbd8
+load:0x403cc700,len:0x2a0c
+entry 0x403c98d0
+
+╔══════════════════════════════╗
+║   蛋卷 V4 统一版             ║
+║   DEMO MODE                  ║
+╚══════════════════════════════╝
+
+[OK]   看门狗 (30s)
+[OK]   LED (GPIO 1)
+E (4487) cam_hal: FB-SIZE: 0 != 76800
+[OK]   相机 GRAYSCALE
+[  2432][E][Preferences.cpp:483] getString(): nvs_get_str len fail: ssid NOT_FOUND
+[  2439][E][Preferences.cpp:483] getString(): nvs_get_str len fail: pwd NOT_FOUND
+.
+[OK]   WiFi 10.178.174.25
+[OK]   NTP 2026-07-08 23:50:49 CST
+E (5125) I2S: i2s_driver_uninstall(2048): I2S port 0 has not installed
+[OK] Mic PDM RX  I2S0  CLK=2 DATA=3
+E (5126) I2S: i2s_driver_uninstall(2048): I2S port 1 has not installed
+[OK] Spk I2S TX  I2S1  BCLK=7 LRCLK=21 DOUT=46
+[OK]   音频 I2S
+[OK] SU-03T UART ready: RX=44 TX=43 baud=9600
+[MQTT] 已连接
+[OK]   帧差法就绪
+[HIST] 已加载 5 条告警历史
+[  3868][E][Preferences.cpp:503] getBytesLength(): nvs_get_blob len fail: speed NOT_FOUND
+[  3876][E][Preferences.cpp:503] getBytesLength(): nvs_get_blob len fail: volume NOT_FOUND
+[FSM] BOOTING → IDLE
+[FSM] IDLE → MONITORING
+[FSM]  → Monitoring
+[READY] 开始巡检
+
+cam_hal: EV-VSYNC-OVF
+[OK]   巡检中  score=0.81  motion=1  still=0ms
+[OK]   巡检中  score=0.64  motion=1  still=0ms
+cam_hal: EV-VSYNC-OVF
+[OK]   巡检中  score=0.90  motion=1  still=0ms
+[LEVEL2] #1  score=0.90  motion
+[FSM] MONITORING → CAPTURING
+E (32265) gdma: gdma_disconnect(299): no peripheral is connected to the channel
+E (62265) task_wdt: Task watchdog got triggered. The following tasks did not reset the watchdog in time:
+E (62265) task_wdt:  - loopTask (CPU 1)
+E (62265) task_wdt: Tasks currently running:
+E (62265) task_wdt: CPU 0: IDLE0
+E (62265) task_wdt: CPU 1: IDLE1
+E (62265) task_wdt: Aborting.
+
+abort() was called at PC 0x42025780 on core 0
+
+
+Backtrace: 0x40377e3e:0x3fc971c0 0x4037d86d:0x3fc971e0 0x40383d71:0x3fc97200 0x42025780:0x3fc97280 0x403795f9:0x3fc972a0 0x420b838f:0x3fcf54a0 0x4202550d:0x3fcf54c0 0x4037ee40:0x3fcf54e0
+
+
+
+
+ELF file SHA256: c4bd5173da531d22
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40377a74
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3808,len:0x4bc
+load:0x403c9700,len:0xbd8
+load:0x403cc700,len:0x2a0c
+entry 0x403c98d0

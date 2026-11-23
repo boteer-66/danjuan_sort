@@ -1,0 +1,67 @@
+看图主要不是清晰度参数的问题，而是 过曝 + 白平衡/增益拉偏 + 自动曝光还没稳定。右边白色区域已经炸白了，OV2640 的自动曝光会被强亮区域带跑，画面就会发绿、发青、暗部脏。
+我会先这样改。
+JPEG 拍照建议参数
+cpp
+config.xclk_freq_hz = 20000000;
+config.pixel_format = PIXFORMAT_JPEG;
+config.frame_size = FRAMESIZE_SVGA;   // 先保持 800x600
+config.jpeg_quality = 10;             // 8 太大文件，先用 10~12
+config.fb_count = 1;
+config.grab_mode = CAMERA_GRAB_LATEST; // 如果库支持  
+
+
+sensor 参数建议：
+s->set_brightness(s, 0);      // 你现在 2，太亮
+s->set_contrast(s, 0);        // 你现在 2，先降回 0
+s->set_saturation(s, -1);     // 降一点，抑制偏色
+
+s->set_whitebal(s, 1);
+s->set_awb_gain(s, 1);
+
+s->set_exposure_ctrl(s, 1);
+s->set_aec2(s, 1);
+s->set_ae_level(s, -2);       // 重点：压曝光，可试 -1 / -2 / -3
+
+s->set_gain_ctrl(s, 1);
+s->set_gainceiling(s, GAINCEILING_4X); // 不要让自动增益飙太高  
+
+
+巡检 GRAYSCALE 建议  
+config.pixel_format = PIXFORMAT_GRAYSCALE;
+config.frame_size = FRAMESIZE_QVGA;
+config.fb_count = 1;
+config.grab_mode = CAMERA_GRAB_LATEST;  
+
+sensor：  
+s->set_brightness(s, 0);
+s->set_contrast(s, 0);        // 巡检算法需要稳定，别太锐
+s->set_exposure_ctrl(s, 1);
+s->set_aec2(s, 1);
+s->set_ae_level(s, -1);       // 灰度巡检也压一点
+s->set_gain_ctrl(s, 1);
+s->set_gainceiling(s, GAINCEILING_4X);  
+
+
+最关键的还有这个：拍 JPEG 前不要 init 后只等 delay(300) 就拍。OV2640 自动曝光/白平衡通常还没收敛。建议 init 后丢掉几帧：
+delay(800);
+
+for (int i = 0; i < 5; i++) {
+  camera_fb_t *fb = esp_camera_fb_get();
+  if (fb) esp_camera_fb_return(fb);
+  delay(100);
+}  
+然后再正式拍照。 
+优先调参顺序：
+
+brightness: 2 -> 0
+contrast: 2 -> 0
+ae_level: 0 -> -2
+gainceiling 限到 4X
+init 后丢 5-10 帧再拍  
+
+
+如果还是右侧炸白，可以继续：
+s->set_ae_level(s, -3);   
+
+如果画面还发绿/发蓝，再试：  
+s->set_saturation(s, -2);
